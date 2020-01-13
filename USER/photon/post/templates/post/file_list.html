@@ -9,7 +9,7 @@
 <a href="{% url 'post:upload' %}" class="btn btn-primary btn-sm">Upload</a>
 
 </P>
-{% if books %}	
+{% if profiles %}	
 <table class="table">
 
 <thead>
@@ -26,7 +26,7 @@
 	<tr>
 		<td>{{profile.Title}}</td>
 		<td>{{profile.Caption}}</td>
-		<td><a href="{{profile.pdf.url}}">Download PDF</a></td>
+		<td><a href="{{profile.photo.url}}">Download File</a></td>
 	</tr>
 	{% endfor %}
 
