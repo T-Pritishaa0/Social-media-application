@@ -17,6 +17,7 @@
 		<th>Title</th>
 		<th>Caption</th>
 		<th>Download</th>
+		<th>Delete</th>
 	</tr>
 
 </thead>
@@ -27,6 +28,11 @@
 		<td>{{profile.Title}}</td>
 		<td>{{profile.Caption}}</td>
 		<td><a href="{{profile.photo.url}}">Download File</a></td>
+		<td><form method="POST" action="{% url 'post:delete' profile.pk %}">
+				{% csrf_token %}
+
+		<button type="submit" class="btn btn-primary">Delete</button>
+		</form></td>		
 	</tr>
 	{% endfor %}
 

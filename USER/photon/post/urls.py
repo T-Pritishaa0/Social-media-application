@@ -10,5 +10,6 @@ app_name = "post"
 
 urlpatterns = [
 	 path('profile/upload/', views.upload_file, name="upload"),
-	 path('profile/', views.list_file, name="list")
+	 path('profile/', views.list_file, name="list"),
+	 path('profile/<int:pk>/', views.delete_file, name="delete"),
 ]

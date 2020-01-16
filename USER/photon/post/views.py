@@ -25,4 +25,7 @@ def list_file(request):
 	return render(request, "post/file_list.html",
 		{"profiles" : profile})
 	
-
+def delete_file(request, pk = None):
+	profile = Post.objects.get(pk=pk)
+	profile.delete()
+	return redirect('post:list')
