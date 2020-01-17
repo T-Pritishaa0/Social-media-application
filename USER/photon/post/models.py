@@ -7,3 +7,6 @@ class Post(models.Model):
 
 	def __str__(self):
 		return self.Title
+
+#class Comment(models.Model):
+	#comment = models.TextField()

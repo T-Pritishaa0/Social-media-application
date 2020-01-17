@@ -1,22 +1,29 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from .forms import OurForm
-from .forms import Post
+from .models import Post
+from django.http import HttpResponse, HttpResponseNotFound, Http404
 
 def upload_file(request):
+	form = OurForm()
 	if request.method == "POST":
 		form = OurForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
 			return redirect('post:list')
-
-
-
-	else:
-		form = OurForm()
 	return render(request, "post/upload.html",
 		{"form":form})
+
+def update_file(request, id=None):
+	instance = get_object_or_404(Post, id=id)
+	form = OurForm()
+	if request.method == "POST":
+		form = OurForm(request.POST, request.FILES, instance=instance)
+		if form.is_valid():
+			form.save()
+			return redirect('post:list')
+	return render(request, "post/upload.html", {"form": form})
 
 		
 
