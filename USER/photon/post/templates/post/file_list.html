@@ -18,6 +18,7 @@
 		<th>Caption</th>
 		<th>Download</th>
 		<th>Delete</th>
+		<th>Update</th>
 	</tr>
 
 </thead>
@@ -32,7 +33,12 @@
 				{% csrf_token %}
 
 		<button type="submit" class="btn btn-primary">Delete</button>
-		</form></td>		
+		</form></td>	
+		<td><form method="POST" action="{% url 'post:update' profile.pk %}">
+				{% csrf_token %}
+
+		<button type="submit" class="btn btn-primary">Update</button>
+		</form></td>	
 	</tr>
 	{% endfor %}
 
@@ -51,8 +57,7 @@
 
 {% endif %}
 
-<script type="text/javascript">
-document.getElementbyId('id_q').value = '{{query}}'
+
 
 </script>
 {% endblock %}

@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 from .forms import OurForm
 from .models import Post
-from django.http import HttpResponse, HttpResponseNotFound, Http404
+
 
 def upload_file(request):
 	form = OurForm()
