@@ -1,3 +1,24 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+
+def index(request):
+	return render(request, 'index.html')
+
+
+def home(request):
+	return render(request, 'home.html',{'name':'kinju'})
+
+def register(request):
+
+	if request.method == 'POST':
+		first_name = request.POST['first_name']
+		last_name = request.POST['last_name']
+		username = request.POST['username']
+		password1 = request.POST['password1']
+		password2 = request.POST['password2']
+		email = request.POST['email']
+
+	else:
+	    return render(request, 'register.html') 
 
 # Create your views here.
