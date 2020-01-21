@@ -13,33 +13,31 @@
 <table class="table">
 
 <thead>
-	<tr>
-		<th>Title</th>
-		<th>Caption</th>
-		<th>Download</th>
-		<th>Delete</th>
-		<th>Update</th>
-	</tr>
-
+	
 </thead>
 
 <tbody>
 	{% for profile in profiles %}
-	<tr>
-		<td>{{profile.Title}}</td>
-		<td>{{profile.Caption}}</td>
-		<td><a href="{{ profile.File.url }}">Download File</a></td>
-		<td><form method="POST" action="{% url 'post:delete' profile.pk %}">
+	<p>
+		{{profile.Title}}
+		<br>
+		{{profile.Caption}}
+		<br><br>
+		<img src="{{profile.File.url}}" height="400" width="450">
+		<br>
+		<a href="{{ profile.File.url }}"><img src="../image/dwbutton.png" height="40" weight="40"></a>
+		<br>
+		<form method="POST" action="{% url 'post:delete' profile.pk %}">
 				{% csrf_token %}
 
 		<button type="submit" class="btn btn-primary">Delete</button>
-		</form></td>	
-		<td><form method="POST" action="{% url 'post:update' profile.pk %}">
+		</form><br>	
+		<form method="POST" action="{% url 'post:update' profile.pk %}">
 				{% csrf_token %}
 
-		<button type="submit" class="btn btn-primary">Update</button>
-		</form></td>	
-	</tr>
+		<button type="submit" class="btn btn-primary">Update</button><br><br><br>
+		</form>	
+	</p>
 	{% endfor %}
 
 </tbody>
