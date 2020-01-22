@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>register</title>
+	<title>Registeration</title>
+	<!--<link rel="stylesheet" type="text/css" href='main.css'>
+	<script type="text/javascript" src='main.js'></script> !-->
 </head>
 <body>
 <form action="register" method="post">
@@ -13,6 +15,12 @@
 	<input type="email" name="email" placeholder="email"><br>
 	<input type="password" name="password1" placeholder="Password"><br>
     <input type="password" name="password2" placeholder="Confirm Password"><br>
+    <input type="Submit" name="Submit"> 
 </form>
+<div>
+	{% for message in messages %}
+	<h3> {{message}} </h3>
+	{% endfor %}
+	</div>
 </body>
 </html>

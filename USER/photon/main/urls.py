@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
     #path("register", views.register, name="register"),
     url(r'^$', views.index),
-    url(r'^register/$', views.register, name="register"),
+    #3url(r'^register/$', views.register, name="register"),
    # path('home',views.home, name='home'),
    
     ]
