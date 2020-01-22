@@ -23,7 +23,7 @@
 		
 		{{profile.Caption}}
 		<br><br>
-		<img src="{{profile.File.url}}" height="400" width="450">
+		<img src="{{profile.File.url}}" height="80%" width="50%">
 		<br>
 		<a href="{{ profile.File.url }}"><img src="..image/dwbutton.png" height="40" weight="40"></a>
 		<br>
@@ -38,12 +38,6 @@
 		<button type="submit" class="btn btn-primary">Update</button><br><br><br>
 		</form>	
 
-		<form method="GET" action="{% url 'post:write' image_id=image.id %}"> 
-				{% csrf_token %}
-				<button type="submit" class="btn btn-primary">Comment</button><br><br><br>
-		</form>	
-
-        <hr>
 	</p>
 	{% endfor %}
 

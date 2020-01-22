@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
 
-# Create your views here.
 from .forms import OurForm, CommentForm
 from .models import Post
+from django.contrib.auth.models import User
 
 
 def upload_file(request):
@@ -60,4 +61,4 @@ def comment(request,image_id):
     else:
         form = CommentForm()
 
-    return render(request, 'comment.html', locals())
+    return render(request, 'comment.html', locals()) 
