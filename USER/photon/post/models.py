@@ -12,7 +12,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     image = models.ForeignKey(Post,blank=True, on_delete=models.CASCADE )
-    #comment_owner = models.ForeignKey(User, blank=True)
+    comment_owner = models.ManyToManyField(User)
     comment = models.TextField()
 
     def save_comment(self):
