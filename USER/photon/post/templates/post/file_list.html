@@ -19,13 +19,13 @@
 <tbody>
 	{% for profile in profiles %}
 	<p>
-		<h6><b>{{profile.Title}}</h6></b>
-		
+		<b>{{profile.Title}}</b>
+		<br>
 		{{profile.Caption}}
 		<br><br>
 		<img src="{{profile.File.url}}" height="80%" width="50%">
 		<br>
-		<a href="{{ profile.File.url }}"><img src="..image/dwbutton.png" height="40" weight="40"></a>
+		<a href="{{ profile.File.url }}">Download</a>
 		<br>
 		<form method="POST" action="{% url 'post:delete' profile.pk %}">
 				{% csrf_token %}
@@ -36,11 +36,33 @@
 				{% csrf_token %}
 
 		<button type="submit" class="btn btn-primary">Update</button><br><br><br>
+		<hr>
 		</form>	
 
 	</p>
 	{% endfor %}
 
+	<br><br>
+
+	<form method="posts">
+		{% csrf_token %}
+		{{ comment_form.as_p }}
+		<input type="submit" value="submit" class="btn btn-outline-success">
+		
+
+	</form>
+	<div class="main-comment-section">
+	{% for comment in comments %}
+	{{ comments.count }} Comment{{ comments|pluralize}}
+	<blockquote class="blockquote">
+    <p class="mb-0">{{ comment.content }}</p>
+    <footer class="blockquote-footer">by <cite title="Source Title">{{ comment.user|capfirst }}</cite></footer>
+    </blockquote>
+
+
+	{% endfor %}
+		}
+</div>
 </tbody>
 
 </table>

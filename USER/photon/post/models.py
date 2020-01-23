@@ -11,20 +11,11 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    image = models.ForeignKey(Post,blank=True, on_delete=models.CASCADE )
-    comment_owner = models.ManyToManyField(User)
-    comment = models.TextField()
+    image = models.ForeignKey(Post, on_delete=models.CASCADE)
+    user = models.ManyToManyField(User)
+    content = models.TextField(max_length= 160)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
-    def save_comment(self):
-        self.save()
-
-    def delete_comment(self):
-        self.delete()
-
-    @classmethod
-    def get_image_comments(cls, id):
-        comments = Comment.objects.filter(image__pk=id)
-        return comments
 
     def __str__(self):
-        return str(self.comment)
+        return '{}-{}'.format(self.Post.Title,str(self.user.name))

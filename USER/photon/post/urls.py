@@ -13,5 +13,5 @@ urlpatterns = [
 	 path('profile/', views.list_file, name="list"),
 	 path('profile/delete/<int:pk>/', views.delete_file, name="delete"),
 	 path('profile/<int:id>/', views.update_file, name="update"),
-	 path('profile/<int:id>/' views.comment, name="comment"),	
+	 	
 ]

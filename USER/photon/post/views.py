@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import Http404
+from django.http import Http404, HttpResponse, HttpResponseNotFound
 
-from .forms import OurForm, CommentForm
-from .models import Post
+from .forms import OurForm
+from .models import Post, Comment
 from django.contrib.auth.models import User
 
 
@@ -38,27 +38,27 @@ def delete_file(request, pk = None):
 	profile.delete()
 	return redirect('post:list')
 
+def post_detail(request, id, slug):
+	image = get_object_or_404(Post, id=id, slug=slug)
+	comments = Comment.objects.filter(image=image).order_by('-id')
 
-def comment(request,image_id):
-    current_user=request.user
-    image = Post.objects.get(id=image_id)
-    profile_owner = User.objects.get(username=current_user)
-    comments = Comment.objects.all()
-    print(comments)
-    if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.image = image
-            comment.comment_owner = current_user
-            comment.save()
+	if request.method == "POST":
+		comment_form = CommentForm(request.POST or None)
+		if comment_form.is_valid:
+			content = request.POST.get('content')
+			Comment.objects.create(image=image, user=request.user, content=content)
+			comment.save()
+			return HttpResponseRedirect(image.get_absolute_url())
+	else:
+		comment_form= CommentForm()
 
-            print(comments)
+	context = {
+		'image' : image,
+		'comments': comments,
+		'comment_form': comment_form,
 
+	}
 
-        return redirect(home)
+	return render(request, "post/file_list.html", context)
 
-    else:
-        form = CommentForm()
-
-    return render(request, 'comment.html', locals()) 
+ 
