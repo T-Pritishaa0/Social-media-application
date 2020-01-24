@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method = "get" class = "seach-bar">
+    <input type = "text" name = "q" placeholder = "search-bar">
+</form>
+
+    </thead>
+{% if Users %}
+<tbody>
+    {% for User in Users %}
+    <tr>
+        <td>{{User.first_name}}</td>
+        <td>{{User.last_name}}</td>
+        <td>{{User.email}}</td>
+    </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class = "container">
+<div class = "row">
+<div class = "card-title">
+<h1 class = "card-body">No Results!</h1>
+</div>
+</div>
+</div>
+{% endif %}
+
+<script type = "text/javascript">
+dcoument.getElementbyId('id_q').value = '{{query}}'
+</script>
+
+{% endblock %}

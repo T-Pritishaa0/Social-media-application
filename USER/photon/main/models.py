@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from django.db import models
 from datetime import datetime 
 from django.utils import timezone
@@ -13,5 +12,5 @@ class User(models.Model):
    # gender = models.CharField(max_length=20)
     #age = models.IntegerField()
 
-
 # Create your models here.
+
