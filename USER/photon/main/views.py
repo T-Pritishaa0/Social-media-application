@@ -5,20 +5,21 @@ from django.db.models import Q
 # Create your views here.
 
 def list_Users(request):
+    u = User.objects.all()
     query = " "
     context = {}
     if request.GET:
         query = request.GET['q']
-    book = get_data_queryset(query)
-    context['Users'] = book
-    return render(request, "personal/Search.html",
-        {"Users" : User})
+        u = get_data_queryset(query)
+    context['Users'] = u
+    return render(request, "Search.html",
+        context)
 
 def get_data_queryset(query = None):
     queryset= []
     queries = query.split(" ")
     for q in queries:
-        Users = Users.objects.filter(
+        Users = User.objects.filter(
             Q(title__icontains = q) |
             Q(name__icontains = q)
             )

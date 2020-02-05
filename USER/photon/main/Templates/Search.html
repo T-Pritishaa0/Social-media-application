@@ -1,14 +1,34 @@
-{% extends "base.html" %}
+{% extends "Base.html" %}
 
 {% block content %}
+<div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a href="#" class="navbar-brand">
+            <img src="web1.png" height="50" alt="Photon">
+        </a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-<form method = "get" class = "seach-bar">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+                <a href="#" class="nav-item nav-link active">Home</a>
+                <a href="#" class="nav-item nav-link">Profile</a>
+                <a href="#" class="nav-item nav-link">Friends</a>
+                
+            </div>
+            
+            <div class="navbar-nav ml-auto">
+                <a href="#" class="nav-item nav-link">Logout</a>
+            </div>
+                        
+    <form method = "get" class = "seach-bar">
     <input type = "text" name = "q" placeholder = "search-bar">
-</form>
+    </form>
 
     </thead>
-{% if Users %}
-<tbody>
+    {% if Users %}
+    <tbody>
     {% for User in Users %}
     <tr>
         <td>{{User.first_name}}</td>
@@ -17,19 +37,24 @@
     </tr>
         {% endfor %}
     </tbody>
-</table>
-{% else %}
-<div class = "container">
-<div class = "row">
-<div class = "card-title">
-<h1 class = "card-body">No Results!</h1>
-</div>
-</div>
-</div>
-{% endif %}
+    </table>
+    {% else %}
+    <div class = "container">
+    <div class = "row">
+    <div class = "card-title">
+    <h1 class = "card-body">No Results!</h1>
+    </div>
+    </div>
+    </div>
+    {% endif %}
 
-<script type = "text/javascript">
-dcoument.getElementbyId('id_q').value = '{{query}}'
-</script>
+    <script type = "text/javascript">
+    dcoument.getElementbyId('id_q').value = '{{query}}'
+    </script>
 
-{% endblock %}
+{% endblock %}    
+        </div>
+    </nav>
+</div>
+</body>
+</html>                            
