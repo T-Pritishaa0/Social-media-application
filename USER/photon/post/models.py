@@ -8,6 +8,8 @@ class Post(models.Model):
     Caption = models.CharField(max_length=500)
     File = models.FileField(upload_to="profile/photos/",null=True)
     like = models.IntegerField(null=True, blank=True, default=0)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="posts")
+
     def __str__(self):
         return self.Caption
 
