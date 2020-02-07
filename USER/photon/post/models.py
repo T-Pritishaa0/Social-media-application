@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     Title = models.CharField(max_length=250)
     Caption = models.CharField(max_length=500)
-    File = models.FileField(upload_to="profile/photos/")
+    File = models.FileField(upload_to="profile/photos/",null=True)
     like = models.IntegerField(null=True, blank=True, default=0)
     def __str__(self):
         return self.Caption

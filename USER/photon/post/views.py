@@ -36,6 +36,7 @@ def list_file(request):
 		comment_collection =Comment.objects.filter(post = post.id)
 		for comment in comment_collection:
 			comments.append(comment.content)
+		print(post.File.url)
 		context.append({"pk": post.pk,
 						"title": post.Title,
 						"caption": post.Caption,
