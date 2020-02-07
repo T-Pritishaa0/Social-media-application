@@ -15,7 +15,7 @@ class Post(models.Model):
 class Comment(models.Model):
     # image = models.ForeignKey(Post, on_delete=models.CASCADE)
     # user = models.ManyToManyField(User)
-    post =  models.ForeignKey(Post, on_delete=models.PROTECT, default=0)
+    post =  models.ForeignKey(Post, on_delete=models.CASCADE, default=0)
     content = models.TextField(max_length= 660, default="Hello")
     # timestamp = models.DateTimeField(auto_now_add=True)
 
