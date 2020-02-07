@@ -9,9 +9,17 @@ from django.contrib.auth.models import User
 def upload_file(request):
 	form = OurForm()
 	if request.method == "POST":
+
 		form = OurForm(request.POST, request.FILES)
+		print(request.POST)
+		print(request.FILES)
+		print(form['Title'])
 		if form.is_valid():
-			form.save()
+			print("I am here")
+			title = form.cleaned_data['Title']
+			caption= form.cleaned_data['Caption']
+			file = form.cleaned_data['File']
+			Post.objects.create(Title =title,Caption =caption,File=file,user_id=request.user.id)
 			return redirect('post:list')
 	return render(request, "post/upload.html",
 		{"form":form})
