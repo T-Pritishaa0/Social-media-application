@@ -5,7 +5,8 @@
 
 
 <P>
-
+<b> {{user.first_name}}</b>
+		<br>
 <a href="{% url 'post:upload' %}" class="btn btn-primary btn-sm">Upload</a>
 
 </P>
@@ -19,6 +20,7 @@
 <tbody>
 	{% for profile in profiles %}
 	<p>
+		
 		<b>{{profile.title}}</b>
 		<br>
 		{{profile.caption}}
@@ -63,19 +65,6 @@
 
 	<br><br>
 
-	
-	<div class="main-comment-section">
-	{% for comment in comments %}
-	{{ comments.count }} Comment{{ comments|pluralize}}
-	<blockquote class="blockquote">
-    <p class="mb-0">{{ comment.content }}</p>
-    <footer class="blockquote-footer">by <cite title="Source Title">{{ comment.user|capfirst }}</cite></footer>
-    </blockquote>
-
-
-	{% endfor %}
-
-</div>
 </tbody>
 
 </table>
