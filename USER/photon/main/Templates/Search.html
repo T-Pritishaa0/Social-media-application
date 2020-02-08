@@ -22,39 +22,10 @@
                 <a href="#" class="nav-item nav-link">Logout</a>
             </div>
                         
-    <form method = "get" class = "seach-bar">
-    <input type = "text" name = "q" placeholder = "search-bar">
+    <form method = "get" class = "seach-bar" action="{% url 'Main:list' %}">
+    <input type = "text" name = "q" placeholder = "Search">
     </form>
-
-    </thead>
-    {% if Users %}
-    <tbody>
-    {% for User in Users %}
-    <tr>
-        <td>{{User.first_name}}</td>
-        <td>{{User.last_name}}</td>
-        <td>{{User.email}}</td>
-    </tr>
-        {% endfor %}
-    </tbody>
-    </table>
-    {% else %}
-    <div class = "container">
-    <div class = "row">
-    <div class = "card-title">
-    <h1 class = "card-body">No Results!</h1>
-    </div>
-    </div>
-    </div>
-    {% endif %}
-
-    <script type = "text/javascript">
-    dcoument.getElementbyId('id_q').value = '{{query}}'
-    </script>
-
-{% endblock %}    
-        </div>
     </nav>
 </div>
-</body>
-</html>                            
+{% endblock %}
+    

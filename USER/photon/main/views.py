@@ -3,6 +3,8 @@ from .models import User
 from django.db.models import Q
 
 # Create your views here.
+def search(request):
+    return render(request = request , template_name = "search.html" , context = {})
 
 def list_Users(request):
     u = User.objects.all()
@@ -12,7 +14,7 @@ def list_Users(request):
         query = request.GET['q']
         u = get_data_queryset(query)
     context['Users'] = u
-    return render(request, "Search.html",
+    return render(request, "list.html",
         context)
 
 def get_data_queryset(query = None):
@@ -20,12 +22,13 @@ def get_data_queryset(query = None):
     queries = query.split(" ")
     for q in queries:
         Users = User.objects.filter(
-            Q(title__icontains = q) |
-            Q(name__icontains = q)
+            Q(first_name__icontains = q) |
+            Q(last_name__icontains = q) |
+            Q(email__icontains = q)
             )
 
-        for User in Users:
-            queryset.append(User)
+        for U in Users:
+            queryset.append(U)
 
     return list(set(queryset))
         

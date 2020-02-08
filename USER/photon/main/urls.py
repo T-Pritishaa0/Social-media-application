@@ -8,5 +8,6 @@ from . import views
 app_name = "Main"
 
 urlpatterns = [
+    path('', views.search, name = "search"),
     path('user/', views.list_Users, name = "list"),
 ]
