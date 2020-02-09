@@ -12,5 +12,5 @@ urlpatterns = [
     path('api/add',views.api_add, name = "api_add"),
     path('api/update/<int:pk>',views.api_update,name = "api_update"),
     path('api/delete/<int:pk>',views.api_delete ,name = "api_delete"),
-    path('api/page/<int:PAGENO>/', views.api_Photon_pagination, name = "api_Photon_pagination"),
+    path('api/page/Pageno=<int:PAGENO>', views.api_Photon_pagination, name = "api_Photon_pagination"),
 ]

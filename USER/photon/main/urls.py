@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^$', views.index),
     #3url(r'^register/$', views.register, name="register"),
     # path('home',views.home, name='home'),
-    path('', views.search, name = "search"),
+    path('Nav/', views.search, name = "search"),
     path('user/', views.list_Users, name = "list"),
 ]
 

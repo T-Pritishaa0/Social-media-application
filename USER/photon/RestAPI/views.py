@@ -55,11 +55,76 @@ def api_delete(request, pk = None):
     else:
         return JsonResponse({"Title" : Pos.Title, "Caption" : Pos.Caption})
 
-def api_Photon_pagination(request, PAGENO):
-	SIZE = 2
+def api_Photon_pagination(request, PAGENO,SIZE):
 	skip = SIZE * (PAGENO-1)
 	Pos = Post.objects.all()[skip: PAGENO*SIZE]
 	dict = {
 		"Posts":list(Pos.values("Title","Caption"))}
 	return JsonResponse(dict)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 	
