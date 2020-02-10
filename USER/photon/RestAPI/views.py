@@ -7,6 +7,7 @@ from django.apps import apps
 from post.models import *
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 import json
 
 # Create your views here.
@@ -26,10 +27,11 @@ def api_add(request):
     if request.method == "POST":
         print("hey")
         decoded_data = request.body.decode('utf-8')
-        Pos_data = json.loads(decoded_data)
-        title = Pos_data['Title']
-        caption = Pos_data['Caption']
-        user = User.objects.create()
+        pos_data = json.loads(decoded_data)
+        pos.title = pos_data['Title']
+        pos.caption = pos_data['Caption']
+        user = User.objects.get(first_name="irvin")
+        print(user)
         Post.objects.create(Title = title, Caption = caption, user=user)
         return JsonResponse({"message" : "Completed"})
     else:
@@ -52,7 +54,7 @@ def api_update(request, pk = None):
 def api_delete(request, pk = None):
     Pos = Post.objects.get(pk = pk)
     if request.method == "DELETE":
-        Post.delete()
+        Pos.delete()
         return JsonResponse({"message" : "Deleted"})
     else:
         return JsonResponse({"Title" : Pos.Title, "Caption" : Pos.Caption})
