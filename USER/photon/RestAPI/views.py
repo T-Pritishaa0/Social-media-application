@@ -54,7 +54,7 @@ def api_update(request, pk = None):
 def api_delete(request, pk = None):
     Pos = Post.objects.get(pk = pk)
     if request.method == "DELETE":
-        Post.delete()
+        Pos.delete()
         return JsonResponse({"message" : "Deleted"})
     else:
         return JsonResponse({"Title" : Pos.Title, "Caption" : Pos.Caption})
