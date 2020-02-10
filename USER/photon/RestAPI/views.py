@@ -7,6 +7,7 @@ from django.apps import apps
 from post.models import *
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.models import User
 import json
 
 # Create your views here.
@@ -29,7 +30,8 @@ def api_add(request):
         Pos_data = json.loads(decoded_data)
         title = Pos_data['Title']
         caption = Pos_data['Caption']
-        user = User.objects.create()
+        user = User.objects.get(first_name="irvin")
+        print(user)
         Post.objects.create(Title = title, Caption = caption, user=user)
         return JsonResponse({"message" : "Completed"})
     else:

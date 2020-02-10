@@ -37,7 +37,7 @@ def register(request):
                 return redirect('register')
             elif User.objects.filter(email=email).exists():
                 messages.info(request, 'email taken')
-                return redirect('register')
+                return redirect('accounts:register')
             else:   
                 user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
                 user.save()

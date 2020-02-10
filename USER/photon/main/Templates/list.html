@@ -10,7 +10,7 @@
    <h5 class="card-title">{{User.first_name}}</h5>
    <p class="card-text">{{User.last_name}}</p>
    <p class="card-text">{{User.email}}</p>
-   <a href="{% url 'Account:logout' %}" class="btn btn-primary">View Profile</a>
+   <a href="{% url 'accounts:logout' %}" class="btn btn-primary">View Profile</a>
  </div>
  {% endfor %}
 </div>
