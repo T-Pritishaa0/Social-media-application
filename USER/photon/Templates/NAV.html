@@ -42,11 +42,10 @@
                     <a href="#" class="nav-item nav-link active">Home</a>
                     <a href="#" class="nav-item nav-link">Profile</a>
                     <a href="#" class="nav-item nav-link">Friends</a>
-                    
                 </div>
                 
                 <div class="navbar-nav ml-auto">
-                    <li><a href="{% url 'accounts:logout' %}">Logout</a>
+                    <li><a href="{% url 'accounts:logout' %}" class="nav-item nav-link">Logout</a>
                 </div>
                             
         <form method = "get" class = "seach-bar" action="{% url 'Main:list' %}">

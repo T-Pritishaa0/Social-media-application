@@ -16,7 +16,7 @@ def login(request):
             return redirect("/profile")
         else:
             messages.info(request, 'invalid credentials')
-            return redirect('login') 
+            return redirect('accounts:login') 
 
     else:
         return render(request, 'login.html')        
@@ -37,14 +37,14 @@ def register(request):
                 return redirect('register')
             elif User.objects.filter(email=email).exists():
                 messages.info(request, 'email taken')
-                return redirect('register')
+                return redirect('accounts:register')
             else:   
                 user = User.objects.create_user(username=username, password=password1, email=email, first_name=first_name, last_name=last_name)
                 user.save()
                 print('user created')
         else:
             messages.info(request, 'Password not matching')
-            return redirect('register')          
+            return redirect('accounts:register')          
         return redirect('/')
     else:
         return render(request, 'register.html')    
