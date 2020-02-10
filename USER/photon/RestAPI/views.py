@@ -23,7 +23,7 @@ def api_spec_data(request, pk = None):
 
 @csrf_exempt
 def api_add(request):
-    #Pos = Post()	
+    pos = Post()	
     if request.method == "POST":
         print("hey")
         decoded_data = request.body.decode('utf-8')
@@ -35,7 +35,7 @@ def api_add(request):
         Post.objects.create(Title = title, Caption = caption, user=user)
         return JsonResponse({"message" : "Completed"})
     else:
-        return JsonResponse({"Title" : Pos.Title, "Caption" : Pos.Caption})
+        return JsonResponse({"Title" : pos.Title, "Caption" : pos.Caption})
 
 @csrf_exempt
 def api_update(request, pk = None):
