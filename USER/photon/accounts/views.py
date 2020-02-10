@@ -16,7 +16,7 @@ def login(request):
             return redirect("/profile")
         else:
             messages.info(request, 'invalid credentials')
-            return redirect('login') 
+            return redirect('accounts:login') 
 
     else:
         return render(request, 'login.html')        
@@ -44,7 +44,7 @@ def register(request):
                 print('user created')
         else:
             messages.info(request, 'Password not matching')
-            return redirect('register')          
+            return redirect('accounts:register')          
         return redirect('/')
     else:
         return render(request, 'register.html')    
