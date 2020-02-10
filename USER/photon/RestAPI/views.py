@@ -22,13 +22,15 @@ def api_spec_data(request, pk = None):
 
 @csrf_exempt
 def api_add(request):
-    Pos = Post()	
+    #Pos = Post()	
     if request.method == "POST":
+        print("hey")
         decoded_data = request.body.decode('utf-8')
         Pos_data = json.loads(decoded_data)
-        Pos.Title = Pos_data['Title']
-        Pos.Caption = Pos_data['Caption']
-        Pos.save()
+        title = Pos_data['Title']
+        caption = Pos_data['Caption']
+        user = User.objects.create()
+        Post.objects.create(Title = title, Caption = caption, user=user)
         return JsonResponse({"message" : "Completed"})
     else:
         return JsonResponse({"Title" : Pos.Title, "Caption" : Pos.Caption})
