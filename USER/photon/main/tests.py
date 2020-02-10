@@ -22,6 +22,13 @@ class PhotonTest(TestCase):
         c = Comment.objects.get(post_id = self.post.id)
         self.assertEqual(c.content, 'NewComment')
 
+    def testPost1(self):
+        t = Post.objects.get(user_id = self.user.id)
+        self.assertEqual(t.Caption, 'Caption')
+
+    def testPost2(self):
+        l = Post.objects.get(user_id = self.user.id)
+        self.assertEqual(l.like, 3)
     # def user(self):
     #     response = self.client.post('/login/', self.credentias, follow = True)
     #     self.assertTrue(response.context['user'].is_active)
