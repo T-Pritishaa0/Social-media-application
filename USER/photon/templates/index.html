@@ -59,11 +59,7 @@
                 <li class="active">
                   <a href="index.html">Home</a>
                 </li>
-               
-                
-                 <!--<li><a href="discount.html">Discount</a></li>-->
-                <li><a href="about.html">About</a></li>
-               
+
               {% if user.is_authenticated %}
                 <li> hello, {{user.first_name}}</li>
                 <li><a href="accounts/logout">logout</a></li>

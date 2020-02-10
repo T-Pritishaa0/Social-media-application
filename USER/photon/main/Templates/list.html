@@ -4,12 +4,13 @@
 
 {% if Users %}
 <div class="card" style="width: 18rem;"></div>
+<h1>Search Results</h1>
 {% for User in Users %}
  <div class="card-body">
    <h5 class="card-title">{{User.first_name}}</h5>
    <p class="card-text">{{User.last_name}}</p>
    <p class="card-text">{{User.email}}</p>
-   <a href="" class="btn btn-primary">View Profile</a>
+   <a href="{% url 'Account:logout' %}" class="btn btn-primary">View Profile</a>
  </div>
  {% endfor %}
 </div>
@@ -17,7 +18,7 @@
 <div class = "container">
     <div class = "row">
     <div class = "card-title">
-        <h1 class = "card-body">No Results!</h1>
+        <h1 class = "card-body">No Results Found</h1>
     </div>
     </div>
 </div>
