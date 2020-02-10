@@ -14,7 +14,7 @@ def home(request):
 
 
 def search(request):
-    return render(request = request , template_name = "search.html" , context = {})
+    return render(request = request , template_name = "NAV.html" , context = {})
 
 def list_Users(request):
     u = User.objects.all()

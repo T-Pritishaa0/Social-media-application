@@ -17,18 +17,20 @@ def api_get_data(request):
     return JsonResponse(dict_value)
 
 def api_spec_data(request, pk = None):
-    Pos = Post.objects.get(pk = pk)
-    return JsonResponse({"Title": Post.Title, "Caption" : Post.Caption})
+    pos = Post.objects.get(pk = pk)
+    return JsonResponse({"Title": pos.Title, "Caption" : pos.Caption})
 
 @csrf_exempt
 def api_add(request):
-    Pos = Post()	
+    #Pos = Post()	
     if request.method == "POST":
+        print("hey")
         decoded_data = request.body.decode('utf-8')
         Pos_data = json.loads(decoded_data)
-        Pos.Title = Pos_data['Title']
-        Pos.Caption = Pos_data['Caption']
-        Pos.save()
+        title = Pos_data['Title']
+        caption = Pos_data['Caption']
+        user = User.objects.create()
+        Post.objects.create(Title = title, Caption = caption, user=user)
         return JsonResponse({"message" : "Completed"})
     else:
         return JsonResponse({"Title" : Pos.Title, "Caption" : Pos.Caption})
@@ -39,8 +41,8 @@ def api_update(request, pk = None):
     if request.method == "PUT":
         decoded_data = request.body.decode('utf-8')
         Pos_data = json.loads(decoded_data)
-        Pos.Title = Post_data['Title']
-        Pos.Caption = Post_data['Caption']
+        Pos.Title = Pos_data['Title']
+        Pos.Caption = Pos_data['Caption']
         Pos.save()
         return JsonResponse({"message" : "Updated"})
     else:
@@ -56,10 +58,71 @@ def api_delete(request, pk = None):
         return JsonResponse({"Title" : Pos.Title, "Caption" : Pos.Caption})
 
 def api_Photon_pagination(request, PAGENO):
-	SIZE = 2
-	skip = SIZE * (PAGENO-1)
-	Pos = Post.objects.all()[skip: PAGENO*SIZE]
-	dict = {
-		"Posts":list(Pos.values("Title","Caption"))}
-	return JsonResponse(dict)
+    SIZE = 2
+    skip = SIZE*(PAGENO-1)
+    pos = Post.objects.all()[skip:PAGENO*SIZE]
+    dict = {"Posts":list(pos.values("Title","Caption"))}
+    return JsonResponse(dict)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 	

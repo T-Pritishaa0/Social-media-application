@@ -11,6 +11,11 @@ class User(models.Model):
    # dob = models.DateField() 
    # gender = models.CharField(max_length=20)
     #age = models.IntegerField()
+	def valid_firtname(self):
+		if self.first_name == " ":
+			return False
+		else:
+			return True
 
 # Create your models here.
 
