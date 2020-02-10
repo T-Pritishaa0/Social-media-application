@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form method="POST" action="{% url 'profile' %}" >
+
+	{% csrf_token %}
+	cant comment
+
+	<button type="submit" class="btn btn-primary btn-sm">comment</button>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'basee.html' %}
+{% block title %} login page {% endblock title %}
+{% block form %}
+<body>
+<div class="container">  
+  <form id="contact" action="login" method="post">
+    <h3>Photon Login Form</h3>
+    
+    {% csrf_token %}
+<fieldset>
+	<input type="text" name="username" placeholder="username"><br>
+    </fieldset>
+  
+
+<fieldset>
+	<input type="password" name="password" placeholder="password"><br>
+ 
+    </fieldset>
+    
+    <fieldset>
+   <input type="Submit" name="Submit"> 
+    </fieldset>
+  
+ 
+<div>
+	{% for message in messages %}
+	<h3> {{message}} </h3>
+	{% endfor %}
+	</div>
+	</form>
+</div>
+</body>
+{% endblock form %}
+</html>
+

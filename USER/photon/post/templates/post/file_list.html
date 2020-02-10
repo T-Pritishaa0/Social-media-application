@@ -1,0 +1,179 @@
+{% extends 'NAV.html' %}
+
+{% block content %}
+{% load static %}
+    
+
+<P>
+<div class="sub-body">
+<a href="{% url 'post:upload' %}" class="btn btn-primary btn-sm">Upload</a>
+</div>
+</P>
+{% if profiles %}	
+	<div class="sub-body post-sub">
+	{% for profile in profiles %}
+	<div class="post">
+            <div class="post-title"><span style="padding-left:10px;">{{profile.title}}</span></div>
+            <div class="post-caption">
+              <span style="padding-left:10px;">{{profile.caption}}</span>
+            </div>
+            <div class="post-image">
+                <img src="{{profile.url}}">    
+            </div>
+            <div class="post-liker">
+                <div class="post-like">
+                  <form method="POST" class="like-form" action="{% url 'post:like' profile.pk %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Like" class="btn btn-outline-success"> {{profile.likes}}
+                  </form>
+                </div>
+                <div class="post-expand">
+                    <i class="fas fa-ellipsis-v" onclick="options({{ forloop.counter0 }})"></i>
+                </div>
+            </div>
+            <!-- hidden -->
+            <div class="post-expanded">
+				<a href="{{ profile.url }}" download class="card-link">Download</a>
+				<form method="POST" class="delete-form"action="{% url 'post:delete' profile.pk %}">
+                {% csrf_token %}
+            	<button type="submit" class="btn btn-primary">Delete</button>
+            	</form>
+            	<form method="POST" class="update-form"action="{% url 'post:update' profile.pk %}">
+      	        {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Update</button>
+         		</form>
+				 
+            </div>
+            <div class="post-comment-now">
+              <form method="POST" class="comment-form" action="{% url 'post:comment' profile.pk %}">
+                {% csrf_token %}
+                <input type="text" name="comment" class="comment-textbox" required="required">
+                <input type="submit" value="Comment" class="btn btn-outline-success">
+              </form>
+            </div>
+            <div class="post-all-comments">
+                
+                {% if profile.comments %}
+                <span style="padding-left:10px;"><i>Comments:</i></span><br>
+                  <ul style="margin-left: 20px;
+                  margin-right: 10px;
+                  width: 270px;
+                  list-style-type: circle;">
+                  {% for comment in profile.comments %}
+                   <li style="width:100%;word-break: break-word;list-style-type: unset;">{{comment}}</li>
+                  {% endfor %}
+                  </ul>
+                {% else %}
+                <span style="padding-left:10px;"><i>No Comments yet</i></span>
+                {% endif %}
+				
+            </div>
+				
+	</div>
+	{% endfor %}
+	{% comment %} {% for profile in profiles %}
+	<p>
+		<b>{{profile.title}}</b>
+		<br>
+		{{profile.caption}}
+		<br><br>
+		<img src="{{profile.url}}" height="80%" width="50%">
+		<br>
+		<a href="{{ profile.url }}">Download</a>
+		<br>
+		<br>
+		Likes:{{profile.likes}}
+		<br>
+		<form method="POST" action="{% url 'post:delete' profile.pk %}">
+				{% csrf_token %}
+
+		<button type="submit" class="btn btn-primary">Delete</button>
+		</form><br>	
+		<form method="POST" action="{% url 'post:update' profile.pk %}">
+				{% csrf_token %}
+
+		<button type="submit" class="btn btn-primary">Update</button><br><br><br>
+		<hr>
+		</form>	
+		<form method="POST" action="{% url 'post:like' profile.pk %}">
+			{% csrf_token %}
+			<input type="submit" value="Like" class="btn btn-outline-success">
+		</form>
+		<br>
+		Comments:<br>
+		{% for comment in profile.comments %}
+			{{comment}}<br>
+		{% endfor %}
+		<br>
+		<form method="POST" action="{% url 'post:comment' profile.pk %}">
+		{% csrf_token %}
+		<input type="text" name="comment">
+		<input type="submit" value="Comment" class="btn btn-outline-success">
+		
+
+	</form>
+	</p>
+	{% endfor %}
+
+	<br><br>
+
+	
+	<div class="main-comment-section">
+	{% for comment in comments %}
+	{{ comments.count }} Comment{{ comments|pluralize}}
+	<blockquote class="blockquote">
+    <p class="mb-0">{{ comment.content }}</p>
+    <footer class="blockquote-footer">by <cite title="Source Title">{{ comment.user|capfirst }}</cite></footer>
+    </blockquote>
+
+
+	{% endfor %}
+
+</div>
+</tbody>
+
+</table>
+{% endcomment %}
+{% else %} 
+
+<div class="container">
+<div class="row">
+<div class="card-title">
+<div class="card-body"> No Posts Yet </h1>
+
+</div>
+
+{% endif %}
+
+<script>
+        var j=[];
+        function options(s) {
+            select=s;
+            var expander = document.getElementsByClassName("post-expanded")[select];
+            if(j[select]==0){
+                j[select]=1;
+                expander.style.display = "block";
+            }
+            else{
+                j[select]=0;
+                expander.style.display = "none";
+            
+            }
+        }
+        function geter(){
+			var expander = document.getElementsByClassName("post-expanded");
+			for(var k=0;k<expander.length;k++){
+				j[k] = 1;
+				options(k);
+			}
+
+		}
+		geter();
+       
+    </script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </div>
+{% endblock %}
