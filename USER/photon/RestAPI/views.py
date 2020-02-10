@@ -27,9 +27,9 @@ def api_add(request):
     if request.method == "POST":
         print("hey")
         decoded_data = request.body.decode('utf-8')
-        Pos_data = json.loads(decoded_data)
-        title = Pos_data['Title']
-        caption = Pos_data['Caption']
+        pos_data = json.loads(decoded_data)
+        pos.title = pos_data['Title']
+        pos.caption = pos_data['Caption']
         user = User.objects.get(first_name="irvin")
         print(user)
         Post.objects.create(Title = title, Caption = caption, user=user)
