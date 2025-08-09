@@ -1,3 +1,3 @@
-# Socisl-media application
+# Social-media application
 Developed social media application using python.
 
